@@ -1,0 +1,10 @@
+.disabled {
+    background-color: dimgray;
+    border-color: dimgray;
+    border-style: outset;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+}
