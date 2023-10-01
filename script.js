@@ -23,7 +23,7 @@ function operate(a, operand, b) {
             return divide(a, b);
         default:
             console.error('Invalid operand');
-    };
+    }; //there has to be a better way to do this
 }
 
 function displayPressedKeys(toAdd) {
@@ -37,7 +37,7 @@ function updateValues(newVal) {
 }
 
 function clear() {
-    lValue = 0;
+    lValue = null;
     rValue = 0;
     operator = '';
     displayValue = 0;
@@ -51,12 +51,12 @@ const del = document.querySelector('.del');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 
-let lValue;
+let lValue = null;
 let operator;
 let rValue;
 let displayValue = 0;
 
-screen.textContent = '  ';
+screen.textContent = '';
 
 numbers.forEach((number) => {
     number.addEventListener('click', (event) => {
@@ -64,23 +64,33 @@ numbers.forEach((number) => {
         displayPressedKeys(+event.target.textContent);
     })
 });
+
 cl.addEventListener('click', () => { clear(); });
+
 del.addEventListener('click', () => { updateValues(Math.floor(displayValue / 10)); });
 window.addEventListener('keydown', (e) => {
     if (e.key = 'Backspace') updateValues(Math.floor(displayValue / 10));
 }); //gonna need to to something like this for all keys
+
 operators.forEach((op) => {
     op.addEventListener('click', (e) => {
-        lValue = displayValue;
+        operator = e.target.textContent; //need to make it so when you press operator again it changes to said operator
+        if (lValue === null) {
+            lValue = displayValue;
+        } else {
+            lValue = operate(lValue, operator, displayValue);
+        }
         displayValue = 0;
-        operator = e.target.textContent;
-        screen.textContent += `${e.target.textContent}`;
+        screen.textContent = `${lValue}${e.target.textContent}`;
     });
 });
+
 equals.addEventListener('click', () => {
     rValue = displayValue;
     operate(lValue, operator, rValue);
     screen.textContent = `${operate(lValue, operator, rValue)}`;
 
 })
+//need to fix the gotcha-s 
+//help :(
 

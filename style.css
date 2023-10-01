@@ -1,6 +1,6 @@
-* {
-    border: 1px solid black;
-    margin: 4px
+body {
+    display: flex;
+    justify-content: center;
 }
 
 .disabled {
@@ -13,6 +13,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.screen {
+    border: 2px solid black;
+    width: 100%;
+    height: 20px;
+    align-content: end;
 }
 
 .keys {
@@ -28,4 +35,13 @@
 .allKeys {
     display: flex;
     flex-direction: column;
+}
+
+.meta-keys {
+    display: flex;
+    justify-content: space-between;
+}
+
+.meta-keys>button {
+    flex: 1;
 }
