@@ -42,7 +42,7 @@ function updateValues(newVal) {
 
 function clear() {
     lValue = null;
-    rValue = 0;
+    rValue = null;
     operator = '';
     displayValue = 0;
     screen.textContent = '';
@@ -56,8 +56,8 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
 
 let lValue = null;
-let operator;
-let rValue;
+let operator = null;
+let rValue = null;
 let displayValue = 0;
 
 screen.textContent = '';
@@ -91,6 +91,9 @@ operators.forEach((op) => {
 
 equals.addEventListener('click', () => {
     rValue = displayValue;
+    if (rValue === null || lValue === null) {
+        return;
+    }
     operate(lValue, operator, rValue);
     screen.textContent = `${operate(lValue, operator, rValue)}`;
 
