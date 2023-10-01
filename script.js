@@ -12,6 +12,9 @@ function divide(a, b) {
     if (Math.floor(result) !== result) {
         result = result.toFixed(2);
     }
+    if (rValue === 0) {
+        return 'don\'t do that';
+    }
     return result;
 }
 
