@@ -8,7 +8,11 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    return a / b;
+    let result = a / b;
+    if (Math.floor(result) !== result) {
+        result = result.toFixed(2);
+    }
+    return result;
 }
 
 function operate(a, operand, b) {
